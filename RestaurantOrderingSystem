@@ -1,0 +1,62 @@
+
+
+//This program models a restaurant ordering system using methods.
+import java.util.Scanner;
+public class RestaurantOrderingSystem {
+
+    public static void main(String[] args) { //main method
+        System.out.println("Welcome to cafe grub. please make your choices and select 6 when you are finished.");
+        double a = 0;
+        while(true){
+            //get the choice and display menu
+            int option = menuDisplay();
+            if(option == 6){
+                break;
+            }
+            //for getting amount of choice and quantity
+            a = a + getQuantityAndCost(option);
+        }
+        //calculating total bill and calling method to get tip %
+        double tBill=addTipAmount(a);
+        System.out.println("the total bill is $"+tBill);
+    }
+    public static int menuDisplay(){  //menu display method
+        System.out.println("Menu\n"+
+                "1:Roti $2.50\n"+
+                "2:Veggi $4.00\n"+
+                "3:Pizza $5.00\n"+
+                "4:Rice $3.00\n"+
+                "5:fish $7.00\n"+
+                "6:done ordering");
+        System.out.println("please enter your choice:");
+        Scanner c = new Scanner(System.in);
+        return c.nextInt();
+    }//end of method menuDisplay
+    public static double getQuantityAndCost(int x){  //method Quantity and cost
+        System.out.println("please enter quantity:");
+        Scanner c = new Scanner(System.in);
+        int quantity = c.nextInt();
+        double amount = 0.0;
+        switch(x){
+            case 1:amount = quantity*2.50;
+                break;
+            case 2:amount = quantity*4.00;
+                break;
+            case 3:amount = quantity*5.00;
+                break;
+            case 4:amount = quantity*3.00;
+                break;
+            case 5:amount = quantity*7.00;
+                break;
+            case 6:break;
+        }//end of switch
+        return amount;
+    }//end of method getQuantityAndCost
+    //method addTipAmount
+    public static double addTipAmount(double sum){  //method TipAmount
+        System.out.println("enter tip amount as % i.e. 15:");
+        Scanner c = new Scanner(System.in);
+        int tip=c.nextInt();
+        return sum+((sum/100)*tip);
+    }//end of method addTipAmount
+}
